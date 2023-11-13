@@ -1,0 +1,13 @@
+{
+  "name": "calc-engine",
+  "version": "1.0.0",
+  "description": "A comprehensive Node.js calculation library offering a wide array of mathematical functions. From basic arithmetic to advanced computations, this library provides robust and precise functions for statistical analysis, financial calculations, algebraic solutions, geometry computations, and unit conversions. Designed for both simplicity and scalability, it's an ideal solution for developers seeking reliable and efficient mathematical operations in their Node.js applications.",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
