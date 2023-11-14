@@ -1,6 +1,9 @@
 # Dependency directories
 node_modules/
 
+# Coverage directory used by jest
+coverage/
+
 # Build output
 dist/
 

@@ -1,4 +1,4 @@
-class ArithmeticOperations {
+export class ArithmeticOperations {
 
     /**
      * Adds two numbers together.
@@ -223,6 +223,30 @@ class ArithmeticOperations {
         }
         return true;
     }
+
+    /**
+     * Calculates the prime factors of a number.
+     * @param n The number.
+     * @returns The prime factors of `n`.
+     */
+    static primeFactors(n: number): number[] {
+        const factors = [];
+        while (n % 2 === 0) {
+            factors.push(2);
+            n /= 2;
+        }
+        for (let i = 3; i <= Math.sqrt(n); i += 2) {
+            while (n % i === 0) {
+                factors.push(i);
+                n /= i;
+            }
+        }
+        if (n > 2) {
+            factors.push(n);
+        }
+        return factors;
+    }
+
 
     /**
      * Calculates the nth term of an arithmetic progression.
@@ -472,6 +496,242 @@ class ArithmeticOperations {
         return a * (1 - Math.pow(r, n)) / (1 - r);
     }
 
+    /**
+     * Calculate the cubic root of a number.
+     * @param x The number.
+     * @returns The cubic root of `x`.
+     */
+    static cbrt(x: number): number {
+        return Math.cbrt(x);
+    }
+
+    /**
+     * Round a number towards plus infinity.
+     * @param x The number.
+     * @returns The rounded value.
+     */
+    static ceil(x: number): number {
+        return Math.ceil(x);
+    }
+
+    /**
+     * Compute the cube of a number.
+     * @param x The number.
+     * @returns The cube of `x`.
+     */
+    static cube(x: number): number {
+        return x * x * x;
+    }
+
+    /**
+     * Calculate the exponential of a number.
+     * @param x The number.
+     * @returns The exponential of `x`.
+     */
+    static exp(x: number): number {
+        return Math.exp(x);
+    }
+
+    /**
+     * Calculate the exponential of a number minus one.
+     * @param x The number.
+     * @returns The value of `exp(x) - 1`.
+     */
+    static expm1(x: number): number {
+        return Math.expm1(x);
+    }
+
+    /**
+     * Round a number towards minus infinity.
+     * @param x The number.
+     * @returns The rounded value.
+     */
+    static floor(x: number): number {
+        return Math.floor(x);
+    }
+
+    /**
+     * Calculate the base 2 logarithm of a number.
+     * @param x The number.
+     * @returns The base 2 logarithm of `x`.
+     */
+    static log2(x: number): number {
+        return Math.log2(x);
+    }
+
+    /**
+     * Compute the sign of a number.
+     * @param x The number.
+     * @returns The sign of `x`.
+     */
+    static sign(x: number): number {
+        return Math.sign(x);
+    }
+
+    /**
+     * Compute the square of a number.
+     * @param x The number.
+     * @returns The square of `x`.
+     */
+    static square(x: number): number {
+        return x * x;
+    }
+
+    /**
+     * Inverse the sign of a number.
+     * @param x The number.
+     * @returns The negated value of `x`.
+     */
+    static unaryMinus(x: number): number {
+        return -x;
+    }
+
+    /**
+     * Apply a unary plus operation.
+     * @param x The number.
+     * @returns The value of `x`.
+     */
+    static unaryPlus(x: number): number {
+        return +x;
+    }
+
+
+    /**
+     * Calculates the percentage of a number.
+     * @param part The part value.
+     * @param whole The whole value.
+     * @returns The percentage of `part` of `whole`.
+     */
+    static percentage(part: number, whole: number): number {
+        return part / whole * 100;
+    }
+
+    /**
+     * Calculates the ratio of two numbers.
+     * @param a The first number.
+     * @param b The second number.
+     * @returns The ratio of `a` to `b`.
+     */
+    static ratio(a: number, b: number): string {
+        const gcd = ArithmeticOperations.gcd(a, b);
+        return `${a / gcd}:${b / gcd}`;
+    }
+
+    /**
+     * Calculates the average (mean) of a set of numbers.
+     * @param nums An array of numbers.
+     * @returns The average of `nums`.
+     */
+    static mean(...nums: number[]): number {
+        return nums.reduce((acc, val) => acc + val, 0) / nums.length;
+    }
+
+    /**
+     * Finds the median value of a set of numbers.
+     * @param nums An array of numbers.
+     * @returns The median of `nums`.
+     */
+    static median(...nums: number[]): number {
+        nums.sort((a, b) => a - b);
+        const mid = Math.floor(nums.length / 2);
+        return nums.length % 2 === 0 ? (nums[mid] + nums[mid - 1]) / 2 : nums[mid];
+    }
+
+    /**
+     * Generates a random number within a given range.
+     * @param min The minimum value.
+     * @param max The maximum value.
+     * @returns A random number between `min` and `max`.
+     */
+    static random(min: number, max: number): number {
+        return Math.random() * (max - min) + min;
+    }
+
+
+    /**
+    * Raises a number to an integer power using exponentiation by squaring.
+    * @param base The base number.
+    * @param exponent The exponent (integer).
+    * @returns The result of raising `base` to the `exponent`.
+    */
+
+    static intPower(base: number, exponent: number): number {
+        if (exponent < 0) {
+            throw new Error("Exponent must be a non-negative integer.");
+        }
+        let result = 1;
+        while (exponent > 0) {
+            if (exponent % 2 === 1) {
+                result *= base;
+            }
+            exponent = Math.floor(exponent / 2);
+            base *= base;
+        }
+        return result;
+    }
+
+    /**
+     * Computes the sum of an arithmetic progression.
+     * @param a1 The first term.
+     * @param n The number of terms.
+     * @param d The common difference between terms.
+     * @returns The sum of the first `n` terms of the progression.
+     */
+    static arithmeticProgressionSum(a1: number, n: number, d: number): number {
+        return n / 2 * (2 * a1 + (n - 1) * d);
+    }
+
+    /**
+     * Computes the sum of a geometric progression.
+     * @param a1 The first term.
+     * @param r The common ratio.
+     * @param n The number of terms.
+     * @returns The sum of the first `n` terms of the progression.
+     */
+    static geometricProgressionSum(a1: number, r: number, n: number): number {
+        if (r === 1) {
+            return n * a1;
+        }
+        return a1 * (1 - Math.pow(r, n)) / (1 - r);
+    }
+
+
+    /**
+     * Calculates the sum of all numbers in a given range.
+     * @param start The starting number of the range.
+     * @param end The ending number of the range.
+     * @returns The sum of all numbers from `start` to `end`.
+     */
+    static sumRange(start: number, end: number): number {
+        return (end - start + 1) * (start + end) / 2;
+    }
+
+    /**
+     * Calculates the sum of the digits of a number.
+     * @param n The number.
+     * @returns The sum of the digits of `n`.
+     */
+    static digitSum(n: number): number {
+        return Math.abs(n).toString().split("").map(Number).reduce((acc, val) => acc + val, 0);
+    }
+
+    /**
+     * Converts an angle from degrees to radians.
+     * @param degrees The angle in degrees.
+     * @returns The angle in radians.
+     */
+    static degreesToRadians(degrees: number): number {
+        return degrees * Math.PI / 180;
+    }
+
+    /**
+     * Converts an angle from radians to degrees.
+     * @param radians The angle in radians.
+     * @returns The angle in degrees.
+     */
+    static radiansToDegrees(radians: number): number {
+        return radians * 180 / Math.PI;
+    }
+
 
 }
-export { ArithmeticOperations };
